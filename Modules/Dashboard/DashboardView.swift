@@ -1,6 +1,12 @@
 import SwiftUI
 
 struct DashboardView: View {
+
+    let habits: [Habit]
+    
+    let habitTapped: (Habit) -> Void
+    
+    
     let layout = [
         GridItem(.flexible(minimum: 150, maximum: .infinity)),
         GridItem(.flexible(minimum: 150, maximum: .infinity)),
@@ -9,11 +15,16 @@ struct DashboardView: View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: layout) {
-                HabitCard("Reading", icon: "book.closed.fill")
-                HabitCard("Coding", icon: "macbook")
-                HabitCard("Swimming", icon: "figure.open.water.swim.circle.fill")
-                
-                ProcessHabitCard("Sleeping", icon: "powersleep", progress: 6, goal: 8, onIncrement: {})
+                ForEach(habits) { habit in
+                    Button(action: { habitTapped(habit) }) {
+                        switch(habit.type) {
+                        case .positive:
+                            HabitCard(name: habit.name, icon: habit.icon, done: false)
+                        case .timed(let goal):
+                            TimedHabitCard(name: habit.name, icon: habit.icon, progress: 1, goal: goal)
+                        }
+                    }
+                }
             }
         }
         .padding()
@@ -21,36 +32,42 @@ struct DashboardView: View {
 }
 
 // MARK: - yes / no habit card
-@ViewBuilder
-func HabitCard(_ name: String, icon: String) -> some View {
-    VStack {
-        HabitIcon(icon)
-        
-        Text(name)
+struct HabitCard: View {
+    let name: String
+    let icon: String
+    let done: Bool
+
+    var body: some View {
+        VStack {
+            HabitIcon(icon, backgroundColor: done ? .theme : .gray)
+            Text(name)
+        }
+        .cardStyle(color: done ? .theme : .gray)
     }
-    .cardStyle()
 }
 
 // MARK: - process habit card
-@ViewBuilder
-func ProcessHabitCard(_ name: String, icon: String, progress: Int, goal: Int, onIncrement: @escaping () -> Void) -> some View {
-    VStack {
-        HabitIcon(icon)
-        
-        Text(name)
-        
-        ProcessBar(progress: progress, goal: goal, onIncrement: onIncrement)
+struct TimedHabitCard: View {
+    let name: String
+    let icon: String
+    let progress: Int
+    let goal: Int
+
+    var body: some View {
+        VStack {
+            HabitIcon(icon, backgroundColor: progress == 0 ? .gray : .theme)
+            Text(name)
+            ProcessBar(progress: progress, goal: goal)
+        }
+        .cardStyle(color: progress == 0 ? .gray : .theme)
     }
-    .frame(maxWidth: .infinity)
-    .cardStyle()
-   
 }
 
 @ViewBuilder
-func HabitIcon(_ icon: String) -> some View {
+func HabitIcon(_ icon: String, backgroundColor: Color = .theme) -> some View {
     ZStack {
         Circle()
-            .fill(Color.theme)
+            .fill(backgroundColor)
             .frame(width: 60, height: 60)
         
         Image(systemName: icon)
@@ -60,7 +77,7 @@ func HabitIcon(_ icon: String) -> some View {
 }
 
 @ViewBuilder
-func ProcessBar(progress: Int, goal: Int, onIncrement: @escaping () -> ()) -> some View {
+func ProcessBar(progress: Int, goal: Int) -> some View {
     VStack {
         // Progress bar
         ZStack(alignment: .leading) {
@@ -73,9 +90,6 @@ func ProcessBar(progress: Int, goal: Int, onIncrement: @escaping () -> ()) -> so
                 .frame(width: CGFloat(progress)/CGFloat(goal) * 100, height: 12)
         }
         .frame(maxWidth: .infinity)
-        .onTapGesture {
-            onIncrement()
-        }
         
         Text("\(progress) of \(goal)")
             .font(.caption)
@@ -84,9 +98,8 @@ func ProcessBar(progress: Int, goal: Int, onIncrement: @escaping () -> ()) -> so
 }
 
 fileprivate struct CardModifier: ViewModifier {
-    var cornerRadius: CGFloat = 12
-    var shadowRadius: CGFloat = 4
     var backgroundColor: Color = .white
+    var color: Color = .theme
     
     func body(content: Content) -> some View {
         content
@@ -94,19 +107,23 @@ fileprivate struct CardModifier: ViewModifier {
             .padding() // internal padding
             .background(backgroundColor)
             .font(.system(size: 16, weight: .heavy))
-            .foregroundStyle(Color.theme)
-            .cornerRadius(cornerRadius)
-            .shadow(color: Color.black.opacity(0.15), radius: shadowRadius, x: 0, y: 2)
+            .foregroundStyle(color)
+            .cornerRadius(12)
+            .shadow(color: Color.contrast.opacity(0.2), radius: 4, x: 0, y: 2)
             .padding() // external padding
     }
 }
 
 extension View {
-    fileprivate func cardStyle(cornerRadius: CGFloat = 12, shadowRadius: CGFloat = 4, backgroundColor: Color = .white) -> some View {
-        self.modifier(CardModifier(cornerRadius: cornerRadius, shadowRadius: shadowRadius, backgroundColor: backgroundColor))
+    fileprivate func cardStyle(color: Color = .theme) -> some View {
+        self.modifier(CardModifier(color: color))
     }
 }
 
+
 #Preview {
-    DashboardView()
+    DashboardView(
+        habits: Habit.sample,
+        habitTapped: { _ in }
+    )
 }

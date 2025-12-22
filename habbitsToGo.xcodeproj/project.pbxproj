@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		97E9E7032EF9E352007AEB5F /* Router in Frameworks */ = {isa = PBXBuildFile; productRef = 97E9E7022EF9E352007AEB5F /* Router */; };
+		97E9E7092EF9E9B5007AEB5F /* Flux in Frameworks */ = {isa = PBXBuildFile; productRef = 97E9E7082EF9E9B5007AEB5F /* Flux */; };
+		97E9E71B2EF9EC95007AEB5F /* Flux in Frameworks */ = {isa = PBXBuildFile; productRef = 97E9E71A2EF9EC95007AEB5F /* Flux */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		97E9E6E42EF9C751007AEB5F /* habbitsToGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = habbitsToGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -33,6 +39,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97E9E7032EF9E352007AEB5F /* Router in Frameworks */,
+				97E9E71B2EF9EC95007AEB5F /* Flux in Frameworks */,
+				97E9E7092EF9E9B5007AEB5F /* Flux in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +88,9 @@
 			);
 			name = habbitsToGo;
 			packageProductDependencies = (
+				97E9E7022EF9E352007AEB5F /* Router */,
+				97E9E7082EF9E9B5007AEB5F /* Flux */,
+				97E9E71A2EF9EC95007AEB5F /* Flux */,
 			);
 			productName = habbitsToGo;
 			productReference = 97E9E6E42EF9C751007AEB5F /* habbitsToGo.app */;
@@ -108,6 +120,10 @@
 			);
 			mainGroup = 97E9E6DB2EF9C751007AEB5F;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				97E9E7012EF9E352007AEB5F /* XCRemoteSwiftPackageReference "Router" */,
+				97E9E7192EF9EC95007AEB5F /* XCRemoteSwiftPackageReference "Flux" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 97E9E6E52EF9C751007AEB5F /* Products */;
 			projectDirPath = "";
@@ -367,6 +383,42 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		97E9E7012EF9E352007AEB5F /* XCRemoteSwiftPackageReference "Router" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:ManuelSelch/Router.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.10;
+			};
+		};
+		97E9E7192EF9EC95007AEB5F /* XCRemoteSwiftPackageReference "Flux" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ManuelSelch/Flux";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.10;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		97E9E7022EF9E352007AEB5F /* Router */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97E9E7012EF9E352007AEB5F /* XCRemoteSwiftPackageReference "Router" */;
+			productName = Router;
+		};
+		97E9E7082EF9E9B5007AEB5F /* Flux */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Flux;
+		};
+		97E9E71A2EF9EC95007AEB5F /* Flux */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97E9E7192EF9EC95007AEB5F /* XCRemoteSwiftPackageReference "Flux" */;
+			productName = Flux;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 97E9E6DC2EF9C751007AEB5F /* Project object */;
 }
