@@ -1,6 +1,7 @@
 import SwiftUI
 import Flux
 import Router
+import Dependencies
 
 struct AppContainer: View {
     let dashboard = FluxStore<DashboardFeature>(
@@ -10,7 +11,7 @@ struct AppContainer: View {
         ]
     )
     
-    @ObservedObject var router = MyRouter.shared
+    @Dependency(\.router) var router
     
     var body: some View {
         AppRouterView(
@@ -25,7 +26,7 @@ struct AppContainer: View {
                         DashboardContainer(store: dashboard)
                     case .createHabitSheet:
                         CreateHabitSheet(
-                            createHabitTapped: { habit in dashboard.dispatch(.habitCreated(habit)) }
+                            createHabitTapped: { habit in dashboard.dispatch(.createHabitConfirmed(habit)) }
                         )
                     }
                     
@@ -33,8 +34,6 @@ struct AppContainer: View {
             },
             label: { _ in EmptyView() }
         )
-        
-        
     }
 }
 

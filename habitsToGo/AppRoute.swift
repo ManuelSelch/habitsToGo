@@ -1,24 +1,32 @@
 import Foundation
 import Router
+import Dependencies
 
-enum Route: Equatable & Hashable & Identifiable & Codable {
+nonisolated enum Route: Equatable & Hashable & Identifiable & Codable {
     case dashboard
     case createHabitSheet
     
     var id: Self { self }
 }
 
-enum TabRoute: Equatable & Hashable & Codable & Identifiable & CaseIterable {
+nonisolated enum TabRoute: Equatable & Hashable & Codable & Identifiable & CaseIterable {
     case home
     
     var id: Self { self }
 }
 
-// typealias MyRouter = StackRouter<Route>
+typealias MyRouter = AppRouter<Route, TabRoute>
 
-@MainActor
-struct MyRouter {
-    static let shared = AppRouter<Route, TabRoute>(tab: .home, routers: [
+struct MyRouterKey: DependencyKey {
+    static var liveValue = MyRouter(tab: .home, routers: [
         .home: StackRouter(root: .dashboard)
     ])
+    
+    static var mockValue = liveValue
+}
+
+extension DependencyValues {
+    var router: MyRouter {
+        get { Self[MyRouterKey.self] }
+    }
 }

@@ -1,13 +1,13 @@
 {
-  "originHash" : "f633a424f28c7a016c03963e5d7b08392806028ec069d689bd4ebba5d13078b1",
+  "originHash" : "7e37dfedd501751521416dc9ebebaf9324886cfe125734deee7ecb688dcff008",
   "pins" : [
     {
-      "identity" : "flux",
+      "identity" : "dependencies",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ManuelSelch/Flux",
+      "location" : "git@github.com:ManuelSelch/Dependencies.git",
       "state" : {
-        "revision" : "a387744ee58e35cd2fde786cd1c8248302dc97af",
-        "version" : "1.0.10"
+        "revision" : "05e83fce3f0d99224533d74499d09b2632884122",
+        "version" : "2.0.0"
       }
     },
     {
