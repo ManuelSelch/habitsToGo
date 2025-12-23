@@ -6,7 +6,7 @@ struct CreateHabitSheet: View {
     @State var type = HabitType.positive
     @State var color: String? = nil
     
-    let createHabitTapped: (Habit) -> Void
+    let confirmHabitTapped: (Habit) -> Void
     
     var body: some View {
         VStack {
@@ -42,14 +42,14 @@ struct CreateHabitSheet: View {
         .foregroundStyle(.contrast)
     }
     
-    func createTapped() {
+    func confirmTapped() {
         switch type {
         case .positive:
             let habit = Habit(name: name, description: description, icon: "", type: .positive)
-            createHabitTapped(habit)
+            confirmHabitTapped(habit)
         case .timed:
             let habit = Habit(name: name, description: description, icon: "", type: .timed(10))
-            createHabitTapped(habit)
+            confirmHabitTapped(habit)
         }
     }
     
@@ -66,7 +66,7 @@ struct CreateHabitSheet: View {
             
             Spacer()
             
-            Button(action: createTapped) {
+            Button(action: confirmTapped) {
                 Image(systemName: "checkmark")
             }
         }
@@ -75,6 +75,6 @@ struct CreateHabitSheet: View {
 
 #Preview {
     CreateHabitSheet(
-        createHabitTapped: { _ in }
+        confirmHabitTapped: { _ in }
     )
 }

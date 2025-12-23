@@ -24,10 +24,8 @@ struct AppContainer: View {
                     switch(route) {
                     case .dashboard:
                         DashboardContainer(store: dashboard)
-                    case .createHabitSheet:
-                        CreateHabitSheet(
-                            createHabitTapped: { habit in dashboard.dispatch(.createHabitConfirmed(habit)) }
-                        )
+                    case let .habit(route):
+                        HabitContainer(route: route)
                     }
                     
                 }

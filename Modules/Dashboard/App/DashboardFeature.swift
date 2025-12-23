@@ -45,23 +45,3 @@ struct DashboardFeature: Feature {
         return .none
     }
 }
-
-class SyncHabitMiddleware {
-    @Dependency(\.router) var router
-    
-    func handle() -> Middleware<DashboardFeature> {
-        return { state, effect in
-            switch effect {
-            case .showCreateHabitSheet:
-                Task { @MainActor in self.router.showSheet(.createHabitSheet) }
-               
-            case .saveHabit(let habit):
-                // todo: validate & store
-                Task { @MainActor in self.router.dismiss() }
-                return .habitCreated(habit)
-            }
-        
-            return .none
-        }
-    }
-}

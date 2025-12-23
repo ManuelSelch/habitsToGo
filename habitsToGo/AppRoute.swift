@@ -4,7 +4,7 @@ import Dependencies
 
 nonisolated enum Route: Equatable & Hashable & Identifiable & Codable {
     case dashboard
-    case createHabitSheet
+    case habit(HabitFeature.Route)
     
     var id: Self { self }
 }
