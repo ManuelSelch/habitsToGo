@@ -4,13 +4,6 @@ import Router
 import Dependencies
 
 struct AppContainer: View {
-    let dashboard = FluxStore<DashboardFeature>(
-        state: .init(),
-        middlewares: [
-            SyncHabitMiddleware().handle()
-        ]
-    )
-    
     @Dependency(\.router) var router
     
     var body: some View {
@@ -23,9 +16,11 @@ struct AppContainer: View {
                     
                     switch(route) {
                     case .dashboard:
-                        DashboardContainer(store: dashboard)
+                        DashboardContainer()
                     case let .habit(route):
                         HabitContainer(route: route)
+                    case let .settings(route):
+                        SettingsContainer(route: route)
                     }
                     
                 }

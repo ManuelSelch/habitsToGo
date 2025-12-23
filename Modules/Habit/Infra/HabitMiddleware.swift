@@ -3,19 +3,17 @@ import Flux
 import Dependencies
 import Router
 
-class SyncHabitMiddleware {
+class HabitMiddleware {
     @Dependency(\.router) var router
+    @Dependency(\.habit) var habitService
     
-    func handle() -> Middleware<DashboardFeature> {
+    func handle() -> Middleware<HabitFeature> {
         return { state, effect in
             switch effect {
-            case .showCreateHabitSheet:
-                Task { @MainActor in self.router.showSheet(.habit(.createHabit)) }
-               
+                
             case .saveHabit(let habit):
-                // todo: validate & store
+                await self.habitService.save(habit)
                 Task { @MainActor in self.router.dismiss() }
-                return .habitCreated(habit)
             }
         
             return .none

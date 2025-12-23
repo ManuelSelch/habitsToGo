@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct CreateHabitSheet: View {
-    @State var name = ""
-    @State var description = ""
-    @State var type = HabitType.positive
-    @State var color: String? = nil
+    @State private var name = ""
+    @State private var description = ""
+    @State private var type = HabitType.positive
+    @State private var color: String? = nil
     
     let confirmHabitTapped: (Habit) -> Void
     

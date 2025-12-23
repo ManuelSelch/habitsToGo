@@ -5,6 +5,7 @@ import Dependencies
 nonisolated enum Route: Equatable & Hashable & Identifiable & Codable {
     case dashboard
     case habit(HabitFeature.Route)
+    case settings(SettingsFeature.Route)
     
     var id: Self { self }
 }
