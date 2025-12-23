@@ -17,9 +17,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		97E9E6E62EF9C751007AEB5F /* habbitsToGo */ = {
+		97E9E6E62EF9C751007AEB5F /* habitsToGo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = habbitsToGo;
+			path = habitsToGo;
 			sourceTree = "<group>";
 		};
 		97E9E6F22EF9CB9E007AEB5F /* Modules */ = {
@@ -53,7 +53,7 @@
 			children = (
 				97E9E6F62EF9CE6E007AEB5F /* Common */,
 				97E9E6F22EF9CB9E007AEB5F /* Modules */,
-				97E9E6E62EF9C751007AEB5F /* habbitsToGo */,
+				97E9E6E62EF9C751007AEB5F /* habitsToGo */,
 				97E9E6E52EF9C751007AEB5F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,7 +82,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				97E9E6E62EF9C751007AEB5F /* habbitsToGo */,
+				97E9E6E62EF9C751007AEB5F /* habitsToGo */,
 				97E9E6F22EF9CB9E007AEB5F /* Modules */,
 				97E9E6F62EF9CE6E007AEB5F /* Common */,
 			);
@@ -111,7 +111,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 97E9E6DF2EF9C751007AEB5F /* Build configuration list for PBXProject "habbitsToGo" */;
+			buildConfigurationList = 97E9E6DF2EF9C751007AEB5F /* Build configuration list for PBXProject "habitsToGo" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -364,7 +364,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		97E9E6DF2EF9C751007AEB5F /* Build configuration list for PBXProject "habbitsToGo" */ = {
+		97E9E6DF2EF9C751007AEB5F /* Build configuration list for PBXProject "habitsToGo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				97E9E6ED2EF9C752007AEB5F /* Debug */,

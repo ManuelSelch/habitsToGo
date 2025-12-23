@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct habbitsToGoApp: App {
+struct habitsToGoApp: App {
     var body: some Scene {
         WindowGroup {
             AppContainer()
