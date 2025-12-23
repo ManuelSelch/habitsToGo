@@ -23,6 +23,7 @@ struct DashboardContainer: View {
         NavigationStack {
             DashboardView(
                 habits: store.state.habits,
+                process: store.state.process,
                 habitTapped: { habbit in store.dispatch(.habitTapped(habbit)) }
             )
             .toolbar {

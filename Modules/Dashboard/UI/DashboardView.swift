@@ -3,6 +3,7 @@ import SwiftUI
 struct DashboardView: View {
 
     let habits: [Habit]
+    let process: HabitProgressState
     
     let habitTapped: (Habit) -> Void
     
@@ -16,7 +17,7 @@ struct DashboardView: View {
             LazyVGrid(columns: layout) {
                 ForEach(habits) { habit in
                     Button(action: { habitTapped(habit) }) {
-                        HabitCard(habit: habit, value: 0)
+                        HabitCard(habit: habit, value: process.getToday(habit))
                     }
                 }
             }
@@ -28,6 +29,7 @@ struct DashboardView: View {
 #Preview {
     DashboardView(
         habits: Habit.sample,
+        process: .init(),
         habitTapped: { _ in }
     )
 }

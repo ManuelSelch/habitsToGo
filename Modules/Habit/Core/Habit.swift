@@ -1,6 +1,6 @@
 import Foundation
 
-struct Habit: Identifiable, Equatable, Sendable {
+nonisolated struct Habit: Identifiable, Equatable, Sendable {
     let name: String
     let description: String
     let icon: String
@@ -9,7 +9,7 @@ struct Habit: Identifiable, Equatable, Sendable {
     var id: String { name }
 }
 
-enum HabitType: Identifiable, Hashable, Sendable {
+nonisolated enum HabitType: Identifiable, Hashable, Sendable {
     case positive
     case timed(_ goal: Int)
     

@@ -20,6 +20,8 @@ struct DashboardFeature: Feature {
     nonisolated struct State: Equatable, Sendable {
         var habits: [Habit] = []
         var entries: [HabitEntry] = []
+        
+        var process = HabitProgressState()
     }
     
     // MARK: - Effect
@@ -36,9 +38,8 @@ struct DashboardFeature: Feature {
         
         // user intends
         case .habitTapped(let habit):
-            // todo: check type (positive / timed)
-            let entry = incrementProcess(habit.id, in: &state.entries)
-            return .saveEntry(entry)
+            state.process.increment(habit: habit, period: .today())
+            // todo: save
             
         // results
         case .habitsLoaded(let habits):
@@ -48,20 +49,6 @@ struct DashboardFeature: Feature {
         }
         
         return .none
-    }
-    
-    func incrementProcess(_ habitID: String, in entries: inout [HabitEntry]) -> HabitEntry {
-        // update existing entry
-        if let index = currentIndex(habitID, in: entries) {
-            entries[index].value += 1
-            return entries[index]
-        }
-        
-        // create new entry
-        let entry = HabitEntry(habitID: habitID, date: .now, value: 1)
-        entries.append(entry)
-        return entry
-        
     }
     
     func currentIndex(_ habitID: String, in entries: [HabitEntry]) -> Int? {
